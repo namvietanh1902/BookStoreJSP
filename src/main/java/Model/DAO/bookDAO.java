@@ -21,6 +21,18 @@ public class bookDAO extends DAOManager {
 		disconnect();
 		return rowCount;
 	}
+	public boolean editBook(int id,book book) throws SQLException{
+		connect();
+		String query = "UPDATE BOOKS SET bookName = ? ,author = ? ,price =?  WHERE ID = ?";
+		PreparedStatement stmt = this.conn.prepareStatement(query);
+		stmt.setString(1, book.getBookName());
+		stmt.setString(2, book.getAuthor());
+		stmt.setFloat(3, book.getPrice());
+		stmt.setInt(4, id);
+		boolean rowCount  = stmt.executeUpdate() >0;
+		disconnect();
+		return rowCount;
+	}
 	public boolean deleteBook(int id) throws SQLException {
 		connect();
 		String query = "DELETE FROM BOOKS WHERE ID = ?";
@@ -30,22 +42,15 @@ public class bookDAO extends DAOManager {
 		disconnect();
 		return rowCount;
 	}
-	public book findBook(int id) throws SQLException {
-		connect();
-		String query = "SELECT * from BOOKS WHERE ID = ?";
-		PreparedStatement stmt = this.conn.prepareStatement(query);
-		stmt.setInt(1, id);
-		ResultSet rs = stmt.executeQuery();
-		book result = new book();
-		while (rs.next()) {
-			result.setId(rs.getInt("id"));
-			result.setAuthor(rs.getString("author"));
-			result.setBookName(rs.getString("bookName"));
-			result.setPrice(rs.getFloat("price"));
-			break;
+	public book getBookDetail(int id) throws SQLException {
+		book res = new book();
+		for(book book: getAllBook()) {
+			if (book.getId() == id) {
+				res = book; 
+				break;
+			}
 		}
-		disconnect();
-		return result;
+		return res;
 	}
 	public ArrayList<book> getAllBook() throws SQLException {
 		connect();
@@ -60,7 +65,6 @@ public class bookDAO extends DAOManager {
 			Book.setBookName(rs.getString("bookName"));
 			Book.setPrice(rs.getFloat("price"));
 			list.add(Book);	
-			
 		}
 		disconnect();
 		return list;

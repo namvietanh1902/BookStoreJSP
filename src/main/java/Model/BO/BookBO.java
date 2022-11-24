@@ -27,6 +27,9 @@ public class BookBO {
 		return false;
 		
 	}
+	public boolean editBook(int id,book book) throws SQLException {
+		return bookDAO.editBook(id, book);
+	}
 	public ArrayList<book> DisplayAllBook() {
 		try {
 			return bookDAO.getAllBook();
@@ -36,9 +39,8 @@ public class BookBO {
 		}
 		return null;
 	}
-	public book findBook(int parseInt) {
-		// TODO Auto-generated method stub
-		return null;
+	public book findBook(int id) throws SQLException {
+		return bookDAO.getBookDetail(id);
 	}
 	
 	

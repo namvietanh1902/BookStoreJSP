@@ -14,7 +14,7 @@ import Model.Bean.book;
 /**
  * Servlet implementation class AddBookServlet
  */
-@WebServlet(urlPatterns = {"/add","/getAll","/delete/*","/edit/*","/editForm/*"})
+@WebServlet(urlPatterns = {"/add","/getAll","/delete/*","/edit/*"})
 public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookBO BookBO;
@@ -37,23 +37,11 @@ public class BookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String action = request.getServletPath();
-			
-			
-			
 			switch(action) {
-				case "/add" :
-					addBookServlet(request, response);
-					break;
 				case "/getAll":
 					getAllServlet(request, response);
 					break;
-				case "/delete":
-					deleteBookServlet(request, response);
-					break;
 				case "/edit":
-					editBookServlet(request,response);
-					break;
-				case "/editForm":
 					editFormServlet(request,response);
 					break;
 				default:
@@ -67,16 +55,37 @@ public class BookServlet extends HttpServlet {
 		}
 		
 	}
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getServletPath();
+		switch(action) {
+			case "/add" :
+				addBookServlet(request, response);
+				break;
+			case "/delete":
+				deleteBookServlet(request, response);
+				break;
+			case "/edit":
+				editBookServlet(request,response);
+				break;
+			default:
+				response.getWriter().println("Route does not exist");
+				break;
+		}
+		
+	}
 	protected void editFormServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			
 			String path = request.getPathInfo();
 			String id = path.substring(1);
-			System.out.println("id: "+id);
+			System.out.println(path);
+			System.out.println(request.getServletPath());
 			book book=BookBO.findBook(Integer.parseInt(id));
+			
 			if (book!=null) {
 					request.setAttribute("book",book);
-					request.getRequestDispatcher("./editForm/"+id).forward(request, response);
+					getServletContext().getRequestDispatcher("/editForm.jsp").forward(request, response);
 				}
 			
 				else {
@@ -128,12 +137,21 @@ public class BookServlet extends HttpServlet {
 	}
 	protected void editBookServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			String path = request.getPathInfo();
+			String id = path.substring(1);
 			String bookName = request.getParameter("bookName");
 			String author = request.getParameter("author");
 			Float price = Float.parseFloat(request.getParameter("price"));
-			BookBO.InsertBook(bookName, author, price);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/getAll");
-			dispatcher.forward(request, response);
+			book book = new book();
+			book.setAuthor(author);
+			book.setBookName(bookName);
+			book.setPrice(price);
+			if(BookBO.editBook(Integer.parseInt(id),book)) {
+				response.sendRedirect("/CrudBookStore/getAll");
+			}
+			else {
+				response.getWriter().println("Id khong ton tai");
+			} 
 		}
 		catch(Exception e) {
 			e.printStackTrace();

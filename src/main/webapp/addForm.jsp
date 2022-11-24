@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="add" method = "GET">
+<form action="add" method = "POST">
   <label for="fname">Book name: </label><br>
   <input type="text" id="fname" name="bookName" ><br>
   <label for="lname">Author: </label><br>

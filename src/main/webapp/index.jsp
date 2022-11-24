@@ -34,12 +34,12 @@
         
         	<button class="btn btn-edit" onclick = 
         	 >
-        	<a href="./editForm/${book.id}"/>Edit</a></button>
+        	<a href="./edit/${book.id}"/>Edit</a></button>
         	<button class = "btn" data-id = <c:out value ="${book.id }"/> data-toggle="modal" data-target="#deleteModal">Delete</button>
         </td> 
     </tr>
 </c:forEach>
-  </table>
+  </table> 
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -60,7 +60,7 @@
     </div>
   </div>
 </div>
-<form action="" method = "GET" hidden></form>
+<form action="" method = "POST" hidden></form>
 
 </body>
 <script type ="text/javascript">
@@ -76,9 +76,7 @@ $('#deleteModal').on('show.bs.modal', function (e) {
 $('.btn-confirm').on('click',function(e){
 	deleteForm.submit();
 })
-function EditBtn(id) ={
-	Ses
-}
+
 </script>
 
 </html>
