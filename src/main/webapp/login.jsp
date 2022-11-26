@@ -12,6 +12,7 @@
 <style type="text/css">
 	.backgroud{
 		min-height:100vh;
+		background-image: url("https://yesscale.com/wp-content/uploads/2017/06/h1-background-img-1.jpg")
 	}
 
 	.login{
