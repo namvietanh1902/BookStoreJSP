@@ -64,7 +64,7 @@
  	<div class="m-auto signup">
  		<h1 class="title">Sign up</h1>
  		
- 		<form action="" method="get" class="d-flex flex-column justify-content-start ">
+ 		<form action="signup" method="POST" class="d-flex flex-column justify-content-start ">
  			<div class="d-flex flex-column mb-4" >
 	 			<div class="d-flex justify-content-between ">
 	 				<label>Email</label>
