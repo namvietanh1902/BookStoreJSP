@@ -70,8 +70,13 @@
  	<div class="m-auto signup">
  		<h1 class="title">Sign up</h1>
  		
+<<<<<<< HEAD
  		<form action="" method="get" class="d-flex flex-column justify-content-start ">
  			<div class="email d-flex flex-column mb-4" >
+=======
+ 		<form action="signup" method="POST" class="d-flex flex-column justify-content-start ">
+ 			<div class="d-flex flex-column mb-4" >
+>>>>>>> 169abfd34c0214f20714c4a3f8cd1be28050f271
 	 			<div class="d-flex justify-content-between ">
 	 				<label>Email</label>
 	 				<label>Already have an account?  <a class="text-primary text-decoration-none" href="login.jsp">Log in</a></label>

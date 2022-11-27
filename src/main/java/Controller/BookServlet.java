@@ -37,6 +37,12 @@ public class BookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String action = request.getServletPath();
+			if (request.getSession().getAttribute("user")==null) {
+				request.setAttribute("action", action);
+				request.getRequestDispatcher("/login").forward(request, response);
+				
+				return;
+			}
 			switch(action) {
 				case "/getAll":
 					getAllServlet(request, response);
@@ -49,7 +55,7 @@ public class BookServlet extends HttpServlet {
 					break;
 			}
 			
-		}
+		} 
 		catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +27,10 @@
 	    position: relative;
 	    text-align: left;
 	    top: 0;
+	}
+	.login-fail{
+		color:red;
+		padding: 12px;
 	}
 	
 	.title{
@@ -82,9 +86,15 @@
  	<div class="m-auto login">
  		<h1 class="title">Login</h1>
  		
+<<<<<<< HEAD
  		<form action="" method="get" class="d-flex flex-column justify-content-start ">
  			<div class="email d-flex flex-column mb-4" >
 	 			<div class="d-flex justify-content-between">
+=======
+ 		<form action="login" method="POST" class="d-flex flex-column justify-content-start ">
+ 			<div class="d-flex flex-column mb-4" >
+	 			<div class="d-flex justify-content-between ">
+>>>>>>> 169abfd34c0214f20714c4a3f8cd1be28050f271
 	 				<label>Email</label>
 	 				<label>Need an account? <a class="text-primary text-decoration-none" href="signup.jsp">Sign up</a></label>
 	 			</div>
@@ -94,7 +104,16 @@
  			
  			<div class="pass d-flex flex-column mt-2 mb-4 ">
  				<label>Password</label>
+<<<<<<< HEAD
  				<input type="password" id="password" name="password" class="inputfield" onblur="handleBlurPass(event)" >
+=======
+ 				<input type="password" id="password" name="password" class="inputfield" >
+ 				<div class="login-fail">
+ 					<% if ( request.getAttribute("error")!= null){%>
+ 					<%= (String)request.getAttribute("error") %>
+ 					<% }%>
+ 				</div>
+>>>>>>> 169abfd34c0214f20714c4a3f8cd1be28050f271
  			</div>
  			
  			
