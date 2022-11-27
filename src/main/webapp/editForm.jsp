@@ -107,7 +107,8 @@
 	  <input type="text" id="lname" name="author" value= "${book.author}"><br><br>
 	  <label for="lname">Price </label><br>
 	  <input type="text" id="lname" name="price" value= "${book.price}"><br><br>
-	   <input class="w-100 btn btn-primary " type="submit" value="Submit">
+	   <input class="btn btn-primary " type="submit" value="Submit">
+	   <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
 	</form>
 </div>
 </body>
