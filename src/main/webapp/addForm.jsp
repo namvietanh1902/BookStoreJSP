@@ -121,6 +121,7 @@
 		  <input type="text" id="lname" name="price" onblur="handleblurPrice(event)">
 		</div>
 	  <input class="btn btn-primary" type="submit" value="Submit" >
+	  <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
 	</form>
 </div>
 </body>

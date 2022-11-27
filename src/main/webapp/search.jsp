@@ -99,13 +99,12 @@
 <body>	
 
 <div class="header d-flex justify-content-between align-items-center ">
-	<a href="">Home</a>
+	<a href="/CrudBookStore">Home</a>
 	<form action="/CrudBookStore/search">
 		<input type="text" name="bookName">
 		<button type="submit">Search</button>
 	</form>
 	<a href="logout">Log out</a>
-	
 </div>
 
 <div class="slider">
@@ -139,6 +138,7 @@
   
   <div class="d-flex  mb-4">
 	  <button class = "m-auto btn btn btn-dark "><a class="text-white" href="addForm.jsp" style= "text-decoration:none">Add a new book</a></button>
+	  <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
   </div>
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

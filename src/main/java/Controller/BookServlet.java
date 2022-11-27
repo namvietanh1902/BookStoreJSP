@@ -14,7 +14,7 @@ import Model.Bean.book;
 /**
  * Servlet implementation class AddBookServlet
  */
-@WebServlet(urlPatterns = {"/add","/getAll","/delete/*","/edit/*"})
+@WebServlet(urlPatterns = {"/add","/getAll","/delete/*","/edit/*", "/search/*"})
 public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookBO BookBO;
@@ -49,6 +49,9 @@ public class BookServlet extends HttpServlet {
 					break;
 				case "/edit":
 					editFormServlet(request,response);
+					break;
+				case "/search":
+					searchServlet(request,response);
 					break;
 				default:
 					response.getWriter().println("Route does not exist");
@@ -164,5 +167,12 @@ public class BookServlet extends HttpServlet {
 		}
 		
 	}
+	protected void searchServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		String bookName = request.getParameter("bookName");
+		request.setAttribute("rs", BookBO.searchBook(bookName));
+		RequestDispatcher dispatcher =  request.getRequestDispatcher("search.jsp");
+		dispatcher.forward(request, response);
+		
+}
 
 }

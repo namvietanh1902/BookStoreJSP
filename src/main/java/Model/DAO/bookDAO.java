@@ -70,5 +70,23 @@ public class bookDAO extends DAOManager {
 		return list;
 		
 	}
+	public ArrayList<book> getSearchBooks(String bookName) throws SQLException {
+		connect();
+		ArrayList<book> list = new ArrayList<book>();
+		String query = "SELECT * from BOOKS where bookName LIKE '%" + bookName + "%'";
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		while (rs.next()) {
+			book Book = new book();
+			Book.setId(rs.getInt("id"));
+			Book.setAuthor(rs.getString("author"));
+			Book.setBookName(rs.getString("bookName"));
+			Book.setPrice(rs.getFloat("price"));
+			list.add(Book);	
+		}
+		disconnect();
+		return list;
+		
+	}
 
 }
