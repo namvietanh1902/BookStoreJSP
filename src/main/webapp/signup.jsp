@@ -57,31 +57,36 @@
 		opacity: 0.8;
 	}
 	
+	.errorpass,
+	.errorcpass,
+	.error{
+		color: red;
+	}
+	
 </style>
 </head>
 <body>
  <div class="d-flex backgroud">
  	<div class="m-auto signup">
  		<h1 class="title">Sign up</h1>
- 		
  		<form action="signup" method="POST" class="d-flex flex-column justify-content-start ">
- 			<div class="d-flex flex-column mb-4" >
+ 			<div class="email d-flex flex-column mb-4" >
 	 			<div class="d-flex justify-content-between ">
 	 				<label>Email</label>
 	 				<label>Already have an account?  <a class="text-primary text-decoration-none" href="login.jsp">Log in</a></label>
 	 			</div>
  				
- 				<input type="email" id="email" name="email" class="inputfield" >
+ 				<input type="email" id="email" name="email" class="inputfield" onblur="handleBlurEmail(event)" >
  			</div>
  			
- 			<div class="d-flex flex-column mt-2 mb-4 ">
+ 			<div class="pass d-flex flex-column mt-2 mb-4 ">
  				<label>Password</label>
- 				<input type="password" id="password" name="password" class="inputfield" >
+ 				<input type="password" id="password" name="password" class="inputfield" onblur="handleBlurPass(event)" >
  			</div>
  			
- 			<div class="d-flex flex-column mt-2 mb-4 ">
+ 			<div class="cpass d-flex flex-column mt-2 mb-4 ">
  				<label>Confirm Password</label>
- 				<input type="password" id="password" name="password" class="inputfield" >
+ 				<input type="password" id="cpassword" name="cpassword" class="inputfield" onblur="handleBlurcPass(event)" >
  			</div>
  			
  			
@@ -91,4 +96,69 @@
  
  </div>
 </body>
+<script >
+	function handleBlurEmail(event) {
+		const tmp = document.querySelector('.email')
+		const checkerror = document.querySelector('.error')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("span");
+		const email = event.target.value;
+	
+		error.classList.add("error");
+		var check = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+				
+		if(!(check.test(email))){
+			error.innerText = "Email address is not valid"		
+		}
+		
+		if(email.trim() == ""){
+			error.innerText = "Require"		
+		}
+		tmp.appendChild(error);
+	}
+
+	function handleBlurPass(event) {
+		const tmp = document.querySelector('.pass')
+		const checkerror = document.querySelector('.errorpass')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("span");
+		const pass = event.target.value;
+		
+		error.classList.add("errorpass");
+		
+		if(pass.length < 6){
+			error.innerText = "min length is 6"	
+		}
+		if(pass.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+	
+	function handleBlurcPass(event) {
+		const tmp = document.querySelector('.cpass')
+		const pass  = document.querySelector('#password')
+		const checkerror = document.querySelector('.errorcpass')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("span");
+		const cpass = event.target.value;
+		
+		error.classList.add("errorcpass");
+		
+		if(cpass != pass.value){
+			error.innerText = "password incorrect"	
+		}
+		if(cpass.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+</script>
+
 </html>

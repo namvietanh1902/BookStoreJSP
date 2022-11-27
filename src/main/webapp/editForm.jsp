@@ -86,6 +86,12 @@
 		}
 	}
 	
+	.errorname,
+	.errorauthor,
+	.erorrprice{
+		color:red;
+	}
+	
 </style>
 </head>
 <body>
@@ -101,15 +107,76 @@
 
 <div class="d-flex">
 	<form action="" method = "POST" class="m-auto"><br>
+	<div class="name mb-4">
 	  <label for="fname" >Book name </label><br>
-	  <input type="text" id="fname" name="bookName" value= "${book.bookName}" ><br><br>
+	  <input type="text" id="fname" name="bookName" value= "${book.bookName}" onblur="handleblurName(event)">
+	</div>
+	<div class="author mb-4">
 	  <label for="lname">Author </label><br>
-	  <input type="text" id="lname" name="author" value= "${book.author}"><br><br>
+	  <input type="text" id="lname" name="author" value= "${book.author}" onblur="handleblurAuthor(event)">
+	</div>
+	<div class="price mb-4">
 	  <label for="lname">Price </label><br>
-	  <input type="text" id="lname" name="price" value= "${book.price}"><br><br>
-	   <input class="btn btn-primary " type="submit" value="Submit">
-	   <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
+
+	  <input type="text" id="lname" name="price" value= "${book.price}" onblur="handleblurPrice(event)"><br><br>
+	</div>
+	
+	  <input class="w-100 btn btn-primary " type="submit" value="Submit">
+     <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
+
 	</form>
 </div>
 </body>
+
+<script type="text/javascript">
+	function handleblurName(event) {
+		const tmp = document.querySelector('.name')
+		const checkerror = document.querySelector('.errorname')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("div");
+		const name = event.target.value;
+		error.classList.add("errorname");
+		if(name.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+	
+	function handleblurAuthor(event) {
+		const tmp = document.querySelector('.author')
+		const checkerror = document.querySelector('.errorauthor')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("div");
+		const author = event.target.value;
+		error.classList.add("errorauthor");
+		if(author.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+	
+	function handleblurPrice(event) {
+		const tmp = document.querySelector('.price')
+		const checkerror = document.querySelector('.erorrprice')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("div");
+		const price = event.target.value;
+		error.classList.add("erorrprice");
+		
+		if(!(Number(price))){
+			error.innerText = "Price is Number"	
+		}
+		
+		if(price.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+</script>
 </html>
