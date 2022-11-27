@@ -42,6 +42,8 @@ public class BookBO {
 	public book findBook(int id) throws SQLException {
 		return bookDAO.getBookDetail(id);
 	}
-	
+	public ArrayList<book> searchBook(String bookName) throws SQLException {
+		return bookDAO.getSearchBooks(bookName);
+	}
 	
 }
