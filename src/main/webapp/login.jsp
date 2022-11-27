@@ -70,6 +70,11 @@
 		color: #0d6efd;
 		text-decoration: none;
 	}
+	
+	.errorpass,
+	.error{
+	color: red;
+	}
 </style>
 </head>
 <body>
@@ -78,18 +83,18 @@
  		<h1 class="title">Login</h1>
  		
  		<form action="" method="get" class="d-flex flex-column justify-content-start ">
- 			<div class="d-flex flex-column mb-4" >
-	 			<div class="d-flex justify-content-between ">
+ 			<div class="email d-flex flex-column mb-4" >
+	 			<div class="d-flex justify-content-between">
 	 				<label>Email</label>
 	 				<label>Need an account? <a class="text-primary text-decoration-none" href="signup.jsp">Sign up</a></label>
 	 			</div>
  				
- 				<input type="email" id="email" name="email" class="inputfield" >
+ 				<input type="email" id="email" name="email" class="inputfield" onblur="handleBlurEmail(event)" >
  			</div>
  			
- 			<div class="d-flex flex-column mt-2 mb-4 ">
+ 			<div class="pass d-flex flex-column mt-2 mb-4 ">
  				<label>Password</label>
- 				<input type="password" id="password" name="password" class="inputfield" >
+ 				<input type="password" id="password" name="password" class="inputfield" onblur="handleBlurPass(event)" >
  			</div>
  			
  			
@@ -100,4 +105,44 @@
  
  </div>
 </body>
+<script>
+	
+	function handleBlurEmail(event) {
+		const tmp = document.querySelector('.email')
+		const checkerror = document.querySelector('.error')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("span");
+		const email = event.target.value;
+
+		error.classList.add("error");
+		var check = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+				
+		if(!(check.test(email))){
+			error.innerText = "Email address is not valid"		
+		}		
+		tmp.appendChild(error);
+	}
+	
+	function handleBlurPass(event) {
+		const tmp = document.querySelector('.pass')
+		const checkerror = document.querySelector('.errorpass')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("span");
+		const pass = event.target.value;
+		
+		error.classList.add("errorpass");
+		if(pass.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+	
+	
+	
+	
+</script>
 </html>
