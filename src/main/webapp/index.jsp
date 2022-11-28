@@ -93,6 +93,56 @@
 		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);
 		}
 	}
+	.form-search{
+		display: flex;
+		align-items: center;
+	}
+	
+	.input-search{
+	 outline: none; 
+	 border:1px solid #ccc;
+	 border-radius: 4px;
+	 padding: 4px 0 4px 8px;	
+	}
+	
+	.btn-search{
+		background-color: white;
+		color: #000;
+		outline: none;
+		padding: 4px 8px;
+		border:1px solid #ccc;
+	 	border-radius: 4px;
+	 	position: relative;
+		z-index: 100;
+		overflow: hidden;
+		transition: all 1s;
+		
+	}
+	.btn-search::after {
+	  content: "";
+	  border-radius: 50%;
+	  z-index: -10;
+	  transition: all 0.5s cubic-bezier(0.86, 0.31, 0.55, 0.99);
+	  width: 2px;
+	  top: 50%;
+	  left: 50%;
+	  height: 2px;
+	  position: absolute;
+	  display: inline-block;
+	  background: #1e96da;
+	  opacity: 0;
+	}
+	
+	.btn-search:hover {
+  	cursor: pointer;
+  	color: white;
+  	border:none;
+	}
+	
+	.btn-search:hover::after {
+	  transform: scale(105);
+	  opacity: 1;
+	}
 	
 </style>
 </head>
@@ -100,9 +150,9 @@
 
 <div class="header d-flex justify-content-between align-items-center ">
 	<a href="">Home</a>
-	<form action="/CrudBookStore/search">
-		<input type="text" name="bookName">
-		<button type="submit">Search</button>
+	<form action="/CrudBookStore/search" class="form-search">
+		<input type="text" name="bookName" class="input-search" placeholder="Enter name book..." >
+		<button type="submit" class="btn-search ml-2">Search</button>
 	</form>
 	<a href="logout">Log out</a>
 	
