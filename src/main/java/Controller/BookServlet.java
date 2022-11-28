@@ -3,6 +3,7 @@ import Model.BO.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -121,7 +122,22 @@ public class BookServlet extends HttpServlet {
 		
 	}
 	protected void getAllServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setAttribute("rs", BookBO.DisplayAllBook());
+		int page;
+		if(request.getParameter("page") == null || Integer.parseInt(request.getParameter("page")) <= 0) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		ArrayList<book> books = BookBO.DisplayAllBook();
+		ArrayList<book> fiveBooks = new ArrayList<book>();
+		int startIndex = (page - 1)*5;
+		int lengthOfPage = startIndex + 4 <= books.size() ? startIndex + 4 : books.size()-1;
+		for(int i = startIndex; i <= lengthOfPage; i++) {
+			fiveBooks.add(books.get(i));
+		}
+		int numberOfPages = books.size();
+			request.setAttribute("allPages", numberOfPages);
+			request.setAttribute("rs", fiveBooks);
 			RequestDispatcher dispatcher =  request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 			
@@ -173,6 +189,11 @@ public class BookServlet extends HttpServlet {
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("search.jsp");
 		dispatcher.forward(request, response);
 		
-}
+	}
+	
+	protected void pageServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		String page = request.getParameter("page");
+		System.out.println(page);
+	}
 
 }

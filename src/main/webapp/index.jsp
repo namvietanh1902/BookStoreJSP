@@ -100,9 +100,9 @@
 
 <div class="header d-flex justify-content-between align-items-center ">
 	<a href="">Home</a>
-	<form action="/CrudBookStore/search">
-		<input type="text" name="bookName">
-		<button type="submit">Search</button>
+	<form action="/CrudBookStore/search" class="form-group" style="display: inline-flex">
+		<input type="text" name="bookName" class="form-control">
+		<button type="submit" class="btn btn-info">Search</button>
 	</form>
 	<a href="logout">Log out</a>
 	
@@ -139,6 +139,11 @@
   
   <div class="d-flex  mb-4">
 	  <button class = "m-auto btn btn btn-dark "><a class="text-white" href="addForm.jsp" style= "text-decoration:none">Add a new book</a></button>
+	  <% int allPages = (int)request.getAttribute("allPages");%>
+	  <% int pages = allPages % 5 == 0 ? allPages / 5 : (allPages/5)+1;%>
+	  <% for(int i = 1; i <= pages; i++) { %>
+	  	<a href="/CrudBookStore?page=<%= i %>"><%= i %></a>
+	  <% } %>
   </div>
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
