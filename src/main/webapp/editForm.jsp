@@ -58,6 +58,7 @@
 	
 	.slider h2{
 		position: absolute;
+		color:#fff;
 		text-transform:uppercase;
 		top:50%;
 		left:50%;
@@ -66,24 +67,51 @@
 	}
 	
 	.slider h2:nth-child(1) {
-		color:transparent;
+		color: transparent;
 		-webkit-text-stroke: 2px #1e96da;
 	}
 	
 	.slider h2:nth-child(2) {
-		color:#1e96da;
-		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);	
+		color: #1e96da;
+		animation: animate 4s ease-in-out infinite;
 	}
 	
-	@keyframes animateSlider{
-		0%,100%
-		{
-		clip-path: polygon(0% 55%, 4% 47%, 12% 41%, 26% 40%, 35% 41%, 43% 48%, 50% 57%, 58% 62%, 67% 64%, 74% 63%, 82% 61%, 89% 57%, 94% 52%, 100% 46%, 100% 100%, 0% 100%);
+	
+	@keyframes animate {
+		0%,
+		100% {
+			clip-path: polygon(
+				0% 45%,
+				16% 44%,
+				33% 50%,
+				54% 60%,
+				70% 61%,
+				84% 59%,
+				100% 52%,
+				100% 100%,
+				0% 100%
+			);
 		}
-		50%
-		{
-		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);
+
+		50% {
+			clip-path: polygon(
+				0% 60%,
+				15% 65%,
+				34% 66%,
+				51% 62%,
+				67% 50%,
+				84% 45%,
+				100% 46%,
+				100% 100%,
+				0% 100%
+			);
 		}
+	}
+	
+	.errorname,
+	.errorauthor,
+	.erorrprice{
+		color:red;
 	}
 	
 </style>
@@ -101,15 +129,76 @@
 
 <div class="d-flex">
 	<form action="" method = "POST" class="m-auto"><br>
+	<div class="name mb-4">
 	  <label for="fname" >Book name </label><br>
-	  <input type="text" id="fname" name="bookName" value= "${book.bookName}" ><br><br>
+	  <input type="text" id="fname" name="bookName" value= "${book.bookName}" onblur="handleblurName(event)">
+	</div>
+	<div class="author mb-4">
 	  <label for="lname">Author </label><br>
-	  <input type="text" id="lname" name="author" value= "${book.author}"><br><br>
+	  <input type="text" id="lname" name="author" value= "${book.author}" onblur="handleblurAuthor(event)">
+	</div>
+	<div class="price mb-4">
 	  <label for="lname">Price </label><br>
-	  <input type="text" id="lname" name="price" value= "${book.price}"><br><br>
-	   <input class="btn btn-primary " type="submit" value="Submit">
-	   <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
+
+	  <input type="text" id="lname" name="price" value= "${book.price}" onblur="handleblurPrice(event)"><br><br>
+	</div>
+	
+	  <input class=" btn btn-primary " type="submit" value="Submit">
+     <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
+
 	</form>
 </div>
 </body>
+
+<script type="text/javascript">
+	function handleblurName(event) {
+		const tmp = document.querySelector('.name')
+		const checkerror = document.querySelector('.errorname')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("div");
+		const name = event.target.value;
+		error.classList.add("errorname");
+		if(name.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+	
+	function handleblurAuthor(event) {
+		const tmp = document.querySelector('.author')
+		const checkerror = document.querySelector('.errorauthor')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("div");
+		const author = event.target.value;
+		error.classList.add("errorauthor");
+		if(author.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+	
+	function handleblurPrice(event) {
+		const tmp = document.querySelector('.price')
+		const checkerror = document.querySelector('.erorrprice')
+		if(checkerror) {
+			checkerror.remove()
+		}
+		const error = document.createElement("div");
+		const price = event.target.value;
+		error.classList.add("erorrprice");
+		
+		if(!(Number(price))){
+			error.innerText = "Price is Number"	
+		}
+		
+		if(price.trim() == ""){
+			error.innerText = "Require"	
+		}
+		tmp.appendChild(error);
+	}
+</script>
 </html>

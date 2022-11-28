@@ -66,6 +66,7 @@
 	
 	.slider h2{
 		position: absolute;
+		color:#fff;
 		text-transform:uppercase;
 		top:50%;
 		left:50%;
@@ -74,25 +75,100 @@
 	}
 	
 	.slider h2:nth-child(1) {
-		color:transparent;
+		color: transparent;
 		-webkit-text-stroke: 2px #1e96da;
 	}
 	
 	.slider h2:nth-child(2) {
-		color:#1e96da;
-		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);	
+		color: #1e96da;
+		animation: animate 4s ease-in-out infinite;
 	}
 	
-	@keyframes animateSlider{
-		0%,100%
-		{
-		clip-path: polygon(0% 55%, 4% 47%, 12% 41%, 26% 40%, 35% 41%, 43% 48%, 50% 57%, 58% 62%, 67% 64%, 74% 63%, 82% 61%, 89% 57%, 94% 52%, 100% 46%, 100% 100%, 0% 100%);
+	
+	@keyframes animate {
+		0%,
+		100% {
+			clip-path: polygon(
+				0% 45%,
+				16% 44%,
+				33% 50%,
+				54% 60%,
+				70% 61%,
+				84% 59%,
+				100% 52%,
+				100% 100%,
+				0% 100%
+			);
 		}
-		50%
-		{
-		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);
+
+		50% {
+			clip-path: polygon(
+				0% 60%,
+				15% 65%,
+				34% 66%,
+				51% 62%,
+				67% 50%,
+				84% 45%,
+				100% 46%,
+				100% 100%,
+				0% 100%
+			);
 		}
 	}
+	
+	.form-search{
+		display: flex;
+		align-items: center;
+	}
+	
+	.input-search{
+	 outline: none; 
+	 border:1px solid #ccc;
+	 border-radius: 4px;
+	 padding: 4px 0 4px 8px;	
+	}
+	
+	.btn-search{
+		background-color: white;
+		color: #000;
+		outline: none;
+		padding: 4px 8px;
+		border:1px solid #ccc;
+	 	border-radius: 4px;
+	 	position: relative;
+		z-index: 100;
+		overflow: hidden;
+		transition: all 1s;
+		
+	}
+	.btn-search::after {
+	  content: "";
+	  border-radius: 50%;
+	  z-index: -10;
+	  transition: all 0.5s cubic-bezier(0.86, 0.31, 0.55, 0.99);
+	  width: 2px;
+	  top: 50%;
+	  left: 50%;
+	  height: 2px;
+	  position: absolute;
+	  display: inline-block;
+	  background: #1e96da;
+	  opacity: 0;
+	}
+	
+	.btn-search:hover {
+  	cursor: pointer;
+  	color: white;
+  	border:none;
+	}
+	
+	.btn-search:hover::after {
+	  transform: scale(105);
+	  opacity: 1;
+	}
+	
+	
+	
 	
 </style>
 </head>
@@ -100,9 +176,9 @@
 
 <div class="header d-flex justify-content-between align-items-center ">
 	<a href="/CrudBookStore">Home</a>
-	<form action="/CrudBookStore/search">
-		<input type="text" name="bookName">
-		<button type="submit">Search</button>
+	<form action="/CrudBookStore/search" class="form-search">
+		<input type="text" name="bookName" class="input-search" placeholder="Enter name book..." >
+		<button type="submit" class="btn-search ml-2">Search</button>
 	</form>
 	<a href="logout">Log out</a>
 </div>
