@@ -58,6 +58,7 @@
 	
 	.slider h2{
 		position: absolute;
+		color:#fff;
 		text-transform:uppercase;
 		top:50%;
 		left:50%;
@@ -66,23 +67,44 @@
 	}
 	
 	.slider h2:nth-child(1) {
-		color:transparent;
+		color: transparent;
 		-webkit-text-stroke: 2px #1e96da;
 	}
 	
 	.slider h2:nth-child(2) {
-		color:#1e96da;
-		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);	
+		color: #1e96da;
+		animation: animate 4s ease-in-out infinite;
 	}
 	
-	@keyframes animateSlider{
-		0%,100%
-		{
-		clip-path: polygon(0% 55%, 4% 47%, 12% 41%, 26% 40%, 35% 41%, 43% 48%, 50% 57%, 58% 62%, 67% 64%, 74% 63%, 82% 61%, 89% 57%, 94% 52%, 100% 46%, 100% 100%, 0% 100%);
+	
+	@keyframes animate {
+		0%,
+		100% {
+			clip-path: polygon(
+				0% 45%,
+				16% 44%,
+				33% 50%,
+				54% 60%,
+				70% 61%,
+				84% 59%,
+				100% 52%,
+				100% 100%,
+				0% 100%
+			);
 		}
-		50%
-		{
-		clip-path: polygon(0 43%, 10% 56%, 16% 61%, 28% 64%, 38% 63%, 47% 59%, 55% 54%, 61% 50%, 71% 45%, 88% 45%, 95% 51%, 98% 57%, 100% 69%, 100% 100%, 0% 100%);
+
+		50% {
+			clip-path: polygon(
+				0% 60%,
+				15% 65%,
+				34% 66%,
+				51% 62%,
+				67% 50%,
+				84% 45%,
+				100% 46%,
+				100% 100%,
+				0% 100%
+			);
 		}
 	}
 	
@@ -121,7 +143,7 @@
 	  <input type="text" id="lname" name="price" value= "${book.price}" onblur="handleblurPrice(event)"><br><br>
 	</div>
 	
-	  <input class="w-100 btn btn-primary " type="submit" value="Submit">
+	  <input class=" btn btn-primary " type="submit" value="Submit">
      <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
 
 	</form>
