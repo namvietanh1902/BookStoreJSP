@@ -209,14 +209,19 @@
 </c:forEach>
   </table> 
   
-  <div class="d-flex  mb-4">
-	  <button class = "m-auto btn btn btn-dark "><a class="text-white" href="addForm.jsp" style= "text-decoration:none">Add a new book</a></button>
-	  <% int allPages = (int)request.getAttribute("allPages");%>
-	  <% int pages = allPages % 5 == 0 ? allPages / 5 : (allPages/5)+1;%>
-	  <% for(int i = 1; i <= pages; i++) { %>
-	  	<a href="/CrudBookStore?page=<%= i %>"><%= i %></a>
-	  <% } %>
+  <div class="d-flex justify-content-between  mb-4">
+	  <button class = " btn btn btn-dark "><a class="text-white" href="addForm.jsp" style= "text-decoration:none">Add a new book</a></button>
+	  <nav aria-label="Page navigation example">
+		  <ul class="pagination">
+			  <% int allPages = (int)request.getAttribute("allPages");%>
+			  <% int pages = allPages % 5 == 0 ? allPages / 5 : (allPages/5)+1;%>
+			  <% for(int i = 1; i <= pages; i++) { %>
+			  	<li class="page-item "><a class="page-link" tabindex="<%=i%>" href="/CrudBookStore?page=<%= i %>"><%= i %></a></li>
+			  <% } %>
+		  </ul>
+	  </nav>
   </div>
+  
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -241,6 +246,11 @@
 
 </body>
 <script type ="text/javascript">
+
+	function handleclick(event){
+		console.log()
+	}
+
   	let deleteForm = document.forms[1];
   	console.log(deleteForm)
 $('#deleteModal').on('show.bs.modal', function (e) {
