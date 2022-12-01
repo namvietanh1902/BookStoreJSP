@@ -115,6 +115,39 @@
 		color:red;
 	}
 	
+	.layout{
+		margin-top: 62px; 
+	}
+	
+	.form-bg{
+		border: 1px solid #ccc; 
+		padding: 36px ;
+		position: relative;
+	}
+	
+	.form-title{
+	position: absolute;
+	top: -18px;
+	left: 12px;
+	z-index: 100;
+	background-color: #fff;
+	color:#1e96da;
+	padding: 0 4px;
+	font-size: 22px;
+	}
+	
+	.input-field{
+		width: 320px;
+		padding: 4px 6px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		outline: none;
+	}
+	
+	.input-field:focus{
+		border: 1px solid #1e96da;
+	}
+	
 </style>
 </head>
 <body>
@@ -128,23 +161,26 @@
   <h2>Add a new book</h2>
 </div>
 
-<div class="container d-flex">
-	<form  action="add" method = "POST" class="m-auto"><br><br>
+<div class="layout d-flex">
+ <div class="m-auto form-bg">
+ <span class="form-title">From Add New Book</span>
+	<form  action="add" method = "POST" class="m-auto">	
 		<div class="name mb-4 ">
 		  <label for="fname">Book name </label><br>
-		  <input type="text" id="fname" name="bookName" onblur="handleblurName(event)">
+		  <input type="text" id="fname" name="bookName" class="input-field" onblur="handleblurName(event)">
 		</div>
 		<div class="author mb-4">
 		  <label for="lname">Author </label><br>
-		  <input type="text" id="lname" name="author" onblur="handleblurAuthor(event)">
+		  <input type="text" id="lname" name="author" class="input-field" onblur="handleblurAuthor(event)">
 		</div>
 		<div class="price mb-4">
 		  <label for="lname">Price </label><br>
-		  <input type="text" id="lname" name="price" onblur="handleblurPrice(event)">
+		  <input type="text" id="lname" name="price" class="input-field" onblur="handleblurPrice(event)">
 		</div>
 	  <input class="btn btn-primary" type="submit" value="Submit" >
 	  <a href="/CrudBookStore" class="btn btn-secondary" value="Back" >Back</a>
 	</form>
+ </div>
 </div>
 </body>
 
