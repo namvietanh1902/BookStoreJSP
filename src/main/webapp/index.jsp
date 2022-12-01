@@ -241,7 +241,8 @@
 
 </body>
 <script type ="text/javascript">
-  	let deleteForm = document.forms[0];
+  	let deleteForm = document.forms[1];
+  	console.log(deleteForm)
 $('#deleteModal').on('show.bs.modal', function (e) {
   	let button = e.relatedTarget;
   	console.log(deleteForm);

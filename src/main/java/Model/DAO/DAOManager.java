@@ -16,12 +16,12 @@ public class DAOManager {
 			
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(this.url, this.username, this.password);
 				
 			}
 			catch(ClassNotFoundException e) {
 				throw new SQLException(e);
 			}
-			conn = DriverManager.getConnection(this.url, this.username, this.password);
 		}
 	}
 	protected void disconnect() throws SQLException{
