@@ -81,7 +81,7 @@
 	
 	.slider h2:nth-child(2) {
 		color: #1e96da;
-		animation: animate 4s ease-in-out infinite;
+		animation: animate 2s ease-in-out infinite;
 	}
 	
 	
@@ -114,7 +114,7 @@
 				0% 100%
 			);
 		}
-}
+	}
 	.form-search{
 		display: flex;
 		align-items: center;
