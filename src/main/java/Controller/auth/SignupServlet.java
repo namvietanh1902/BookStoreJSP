@@ -47,12 +47,13 @@ public class SignupServlet extends HttpServlet {
 		try {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
-			if (userBO.Signup(email, password)) {
-				request.getSession().setAttribute("user", email);
-				response.sendRedirect("./");
+			String cpassword = request.getParameter("cpassword");
+			if (!email.equals("") && password.length() >= 6 && password.equals(cpassword) && userBO.Signup(email, password)) {
+//				request.getSession().setAttribute("user", email);
+				response.sendRedirect("/CrudBookStore/login.jsp");
 			}
 			else {
-				request.setAttribute("error", "Đăng ký không thành công");
+				request.setAttribute("error"," Sign up fail");
 				request.getRequestDispatcher("signup.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {

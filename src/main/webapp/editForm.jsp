@@ -151,8 +151,8 @@
 </head>
 <body>
 <div class="header d-flex justify-content-between align-items-center ">
-	<a href="">Home</a>
-	<a href="login.jsp">Log out</a>
+	<a href="../">Book Store</a>
+	<a href="../login.jsp">Log out</a>
 </div>
 
 <div class="slider">

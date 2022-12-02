@@ -57,6 +57,7 @@
 		opacity: 0.8;
 	}
 	
+	.login-fail,
 	.errorpass,
 	.errorcpass,
 	.error{
@@ -89,6 +90,11 @@
  				<input type="password" id="cpassword" name="cpassword" class="inputfield" onblur="handleBlurcPass(event)" >
  			</div>
  			
+ 			<div class="login-fail">
+ 					<% if ( request.getAttribute("error")!= null){%>
+ 					<%= (String)request.getAttribute("error") %>
+ 					<% }%>
+ 				</div>
  			
  			<input class="btn-signup" type="submit" value="Sign up">
  		</form>

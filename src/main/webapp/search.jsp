@@ -175,7 +175,7 @@
 <body>	
 
 <div class="header d-flex justify-content-between align-items-center ">
-	<a href="/CrudBookStore">Home</a>
+	<a href="/CrudBookStore">Book Store</a>
 	<form action="/CrudBookStore/search" class="form-search">
 		<input type="text" name="bookName" class="input-search" placeholder="Enter name book..." >
 		<button type="submit" class="btn-search ml-2">Search</button>

@@ -166,17 +166,28 @@
 	  opacity: 1;
 	}
 	
+	.user{
+		font-size: 24px;
+		color: #d8deec;
+	}
+	
 </style>
 </head>
 <body>	
 
 <div class="header d-flex justify-content-between align-items-center ">
-	<a href="">Home</a>
+	<a href="">Book Store</a>
 	<form action="/CrudBookStore/search" class="form-search">
 		<input type="text" name="bookName" class="input-search" placeholder="Enter name book..." >
 		<button type="submit" class="btn-search ml-2">Search</button>
 	</form>
-	<a href="logout">Log out</a>
+	<%  String user = (String)request.getSession().getAttribute("user"); 
+		String name = user.split("@")[0];
+	%>
+	<div class="d-flex align-items-center ">
+	  	<span class="user text-white mr-3 ">Hi, <%= name %> </span>
+		<a href="logout">Log out</a>	
+	</div>
 	
 </div>
 

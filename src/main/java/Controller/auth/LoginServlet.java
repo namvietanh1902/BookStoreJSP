@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 			else {
-				request.setAttribute("error", "Đăng nhập không thành công");
+				request.setAttribute("error", "Login fail");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 
 			}
